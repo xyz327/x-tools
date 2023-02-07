@@ -1,0 +1,77 @@
+<div class="container w-[38rem] max-w-2xl">
+
+  <div class="grid grid-cols-1 gap-1 p-2">
+    <div class="form-control">
+      <div class="input-group">
+        <input type="text" placeholder="支持时间戳(秒,毫秒)/时间字符串" [(ngModel)]="inputVal" (ngModelChange)="showDate()"
+          class="w-full pr-16 input input-primary input-lg  text-3xl">
+        <button class="input-lg rounded-l-none btn btn-primary gap-2"
+          [ngClass]="copyBtnMap.get('inputVal').loading?'loading':''" (click)="copy('inputVal')">
+          <fa-icon icon="copy"></fa-icon>
+          {{copyBtnMap.get('inputVal').text}}
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 m-1 gap-2">
+      <button class="btn btn-primary col-span-2 p-2 rounded-lg shadow-lg gap-2" (click)="swapValue()">
+        <fa-icon icon="retweet" ></fa-icon>
+        交换
+      </button>
+      <button class="btn btn-primary col-start-3 col-span-2 p-2 rounded-lg gap-2" id="currentTime" (click)="showNowDate()">
+        当前时间</button>
+      <div class="col-start-5 col-span-2 ">
+        <select name="type" [(ngModel)]="currentTimestampType" (change)="timestampTypeChange()"
+          class="select select-bordered  mx-2 rounded-lg border">
+          <ng-container *ngFor="let item of allTimestampType">
+            <option [value]="item.key" class="m-2">{{item.desc}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-control col-start-9 col-span-2">
+        <label class="label cursor-pointer">
+          <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
+          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy" />
+        </label>
+      </div>
+      <button class="btn btn-warning col-start-11 col-span-2 p-2 rounded-lg gap-2" (click)="clearDate()">
+        <fa-icon icon="eraser"></fa-icon>
+        清空
+      </button>
+    </div>
+    <div class="form-control">
+      <div class="input-group">
+        <input disabled type="text" placeholder="时间" [value]="outputVal"
+          class="w-full pr-16 input input-primary input-lg input-bordered text-3xl ">
+        <button class="input-lg rounded-l-none btn btn-primary gap-2"
+          [ngClass]="copyBtnMap.get('outputVal').loading?'loading':''" (click)="copy('outputVal')">
+          <fa-icon icon="copy"></fa-icon>
+          {{copyBtnMap.get('outputVal').text}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <ul>
+    <li>
+
+    </li>
+  </ul>
+  <div class="overflow-x-auto">
+    <table class="table w-full">
+      <tbody>
+        <!-- row 1 -->
+        <tr>
+          <th>今天还剩:</th>
+          <td>
+            <span class="countdown font-mono text-2xl">
+              <span style="--value:{{todayRemain.hours}};"></span>时
+              <span style="--value:{{todayRemain.minutes}};"></span>分
+              <span style="--value:{{todayRemain.seconds}};"></span>秒
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

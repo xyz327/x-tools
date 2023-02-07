@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="h-7 bg-base-100 m-2 mt-0 pt-2 grid grid-cols-3">
+    <a class="btn btn-sm w-14" (click)="backIndex()">
+      <fa-icon icon="reply"></fa-icon>
+    </a>
+    <h2 class="font-bold text-center text-xl tooltip tooltip-bottom" [attr.data-tip]="currentFeature.desc">{{currentFeature.name}}</h2>
+  </div>
+  <div class="divider"></div>
+  <router-outlet></router-outlet>
+</div>

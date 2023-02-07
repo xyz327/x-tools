@@ -1,0 +1,38 @@
+<div class="container w-[38rem] max-w-2xl">
+  <div class="grid grid-cols-1 gap-1 p-2">
+    <div class="form-control">
+      <div class="input-group">
+        <input type="text" disabled class="w-full pr-16 input input-primary input-lg  text-3xl" [(ngModel)]="value">
+        <button class="input-lg rounded-l-none btn btn-primary gap-2" (click)="generate()">
+          <fa-icon [icon]="generateBtnIcon"></fa-icon>
+          {{generateBtnName}}
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 m-2 mt-10 mb-5">
+      <div class="input-group col-span-3">
+        <label class="btn btn-primary btn-xs">长度</label>
+        <input type="number" class="input input-primary input-xs w-[5rem]" [(ngModel)]="length" />
+      </div>
+      <div class="col-span-9 ">
+        <div class="form-control float-right mr-1" *ngFor="let item of candidates">
+          <div class="input-group input-group-xs">
+            <span>
+              <label class="text-xs tooltip" [for]="item.name" [attr.data-tip]="item.content">{{item.name}}</label>
+            </span>
+            <input type="checkbox" [id]="item.name" class="checkbox checkbox-primary checkbox-xs"
+              [(ngModel)]="item.enabled" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-control m-2">
+      <div class="input-group input-group-xs">
+        <span class="btn btn-primary">自定义内容</span>
+        <input type="text" class="input input-primary w-full" [(ngModel)]="customCandidate" />
+        <button class="btn btn-warning" (click)="clearCustom()">清空</button>
+      </div>
+    </div>
+  </div>
+</div>
+

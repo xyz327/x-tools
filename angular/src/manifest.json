@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "x-tools",
+  "short_name": "x-tools",
+  "version": "1.0.0",
+  "description": "Generated with @xyz327",
+  "permissions": [
+    "tabs",
+    "contextMenus"
+  ],
+  "action": {
+    "default_popup": "index.html?#/popup",
+    "default_title": "x-tools"
+  },
+  "options_page": "",
+  "content_scripts": [
+    {
+      "js": [
+        "contentPage.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
