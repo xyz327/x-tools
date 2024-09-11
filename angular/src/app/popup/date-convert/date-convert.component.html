@@ -14,10 +14,11 @@
     </div>
     <div class="grid grid-cols-12 m-1 gap-2">
       <button class="btn btn-primary col-span-2 p-2 rounded-lg shadow-lg gap-2" (click)="swapValue()">
-        <fa-icon icon="retweet" ></fa-icon>
+        <fa-icon icon="retweet"></fa-icon>
         交换
       </button>
-      <button class="btn btn-primary col-start-3 col-span-2 p-2 rounded-lg gap-2" id="currentTime" (click)="showNowDate()">
+      <button class="btn btn-primary col-start-3 col-span-2 p-2 rounded-lg gap-2" id="currentTime"
+        (click)="showNowDate()">
         当前时间</button>
       <div class="col-start-5 col-span-2 ">
         <select name="type" [(ngModel)]="currentTimestampType" (change)="timestampTypeChange()"
@@ -27,6 +28,7 @@
           </ng-container>
         </select>
       </div>
+
       <div class="form-control col-start-9 col-span-2">
         <label class="label cursor-pointer">
           <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
@@ -48,6 +50,18 @@
           {{copyBtnMap.get('outputVal').text}}
         </button>
       </div>
+    </div>
+    <div class="form-control">
+      <div class="label">
+        <span class="label-text">时区</span>
+        <span class="label-text-alt"></span>
+      </div>
+      <select name="type" [(ngModel)]="timezone" (change)="timezoneChange()"
+        class="select select-bordered  mx-2 rounded-lg border">
+        <ng-container *ngFor="let item of allTimezone">
+          <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})</option>
+        </ng-container>
+      </select>
     </div>
   </div>
   <div class="divider"></div>

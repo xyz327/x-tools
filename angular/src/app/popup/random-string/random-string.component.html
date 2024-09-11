@@ -9,7 +9,14 @@
         </button>
       </div>
     </div>
-    <div class="grid grid-cols-12 m-2 mt-10 mb-5">
+
+    <div class="form-control m-2 grid grid-cols-5">
+        <label class="label cursor-pointer col-span-1 float-right">
+          <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
+          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy" />
+        </label>
+    </div>
+    <div class="grid grid-cols-12 m-2 mt-5">
       <div class="input-group col-span-3">
         <label class="btn btn-primary btn-xs">长度</label>
         <input type="number" class="input input-primary input-xs w-[5rem]" [(ngModel)]="length" />

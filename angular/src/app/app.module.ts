@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+//import { ConnectionComponent } from './pages/connection/connection.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserAnimationsModule,FormsModule, AppRoutingModule, FontAwesomeModule],

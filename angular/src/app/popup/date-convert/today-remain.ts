@@ -1,11 +1,15 @@
+import { String } from 'lodash';
 import dayjs from "dayjs"
 
+export interface Timezoneable {
+  getTimezone(): string
+}
 export class TodayRemain {
   private taskId: any
   hours: number = 0
   minutes: number = 0
   seconds: number = 0
-  constructor() {
+  constructor(private timezoneable:Timezoneable) {
     requestAnimationFrame(() => {
       this.taskId = setInterval(() => {
         this.calculateTodayRemain()
@@ -15,7 +19,7 @@ export class TodayRemain {
 
 
   private calculateTodayRemain() {
-    const now = dayjs()
+    const now = dayjs().tz(this.timezoneable.getTimezone())
     const todayEnd = now.endOf('day')
     const duration = dayjs.duration(todayEnd.diff(now))
 

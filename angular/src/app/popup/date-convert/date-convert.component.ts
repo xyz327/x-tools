@@ -4,19 +4,27 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { StorageService } from '../../service/storage.service';
 import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
 import _ from "lodash";
-import { TodayRemain } from './today-remain';
+import { Timezoneable, TodayRemain } from './today-remain';
+import timezones, { Timezone } from "timezones.json"
 
+const defaultTz = "Asia/Hong_Kong"
 dayjs.extend(duration)
 dayjs.extend(customParseFormat)
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault(defaultTz)
 @Component({
   selector: 'app-date-convert',
   templateUrl: './date-convert.component.html',
   styleUrls: ['./date-convert.component.scss']
 })
-export class DateConvertComponent implements OnInit, OnDestroy {
+export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
 
 
+  timezone: string = defaultTz
   // 输入框的值
   inputVal: string = ''
   // 输出框的值
@@ -25,6 +33,7 @@ export class DateConvertComponent implements OnInit, OnDestroy {
   autoCopy: boolean = true
   // 支持的时间戳格式
   allTimestampType: TimestampType[] = [new SecondType(), new MillisecondType()]
+  allTimezone: Timezone[] = timezones
   timestampTypeMap: Map<string, TimestampType> = new Map()
   currentTimestampType: string = this.allTimestampType[0].key
   // 复制按钮
@@ -34,13 +43,16 @@ export class DateConvertComponent implements OnInit, OnDestroy {
   ])
   storageKey = 'lastDateConvertTime'
   // 今天剩余时间
-  todayRemain: TodayRemain = new TodayRemain()
+  todayRemain: TodayRemain = new TodayRemain(this)
   // 额外的时间格式
   extDateFormats = ["YYYY年MM月DD日", "YYYY年MM月DD日 HH时mm分ss秒"]
   constructor(private storageService: StorageService, private copyService: CopyService) {
     this.allTimestampType.forEach((val: TimestampType) => {
       this.timestampTypeMap.set(val.key, val)
     })
+  }
+  getTimezone(): string {
+    return this.timezone
   }
 
   ngOnInit(): void {
@@ -80,6 +92,7 @@ export class DateConvertComponent implements OnInit, OnDestroy {
     if (isTimestamp) {
       const isUnix = this.inputVal.length == 10;
       date = isUnix ? dayjs.unix(timestamp) : dayjs(timestamp);
+      date = date.tz(this.timezone)
       this.outputVal = timestampType.toDate(date);
     } else {
       date = dayjs(this.inputVal);
@@ -101,6 +114,10 @@ export class DateConvertComponent implements OnInit, OnDestroy {
   }
   parseDateWithExtFormte(inputVal: string): any {
     return dayjs(inputVal, this.extDateFormats)
+  }
+  timezoneChange() {
+    dayjs.tz.setDefault(this.timezone)
+    this.showDate()
   }
   timestampTypeChange() {
     this.showDate()

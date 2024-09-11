@@ -25,6 +25,7 @@ export class RandomStringComponent implements OnInit {
     new Candidate("数字", false, "1234567890"),
     new Candidate("特殊符号", false, "!#%&"),
   ]
+  autoCopy = true
   constructor(private storageService: StorageService, private copyService: CopyService, private toastService: ToastService) { }
 
   ngOnInit(): void {

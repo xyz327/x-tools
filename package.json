@@ -1,7 +1,7 @@
 {
   "name": "x-tools",
   "version": "1.0.0",
-  "description": "Generated with @larscom/ng-chrome-extension",
+  "description": "tools for developer",
   "scripts": {
     "ng": "ng",
     "start": "npm run watch",
@@ -34,6 +34,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "ngx-build-plus": "^14.0.0-beta.0",
     "rxjs": "~6.6.0",
+    "timezones.json": "^1.7.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

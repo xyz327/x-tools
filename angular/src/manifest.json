@@ -10,6 +10,7 @@
   ],
   "action": {
     "default_popup": "index.html?#/popup",
+    "default_icon": "assets/logo.png",
     "default_title": "x-tools"
   },
   "options_page": "",
