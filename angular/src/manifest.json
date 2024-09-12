@@ -5,12 +5,17 @@
   "version": "1.1.0",
   "description": "a tools extension for common developer",
   "permissions": [
-    "tabs",
-    "contextMenus"
+      "clipboardWrite"
   ],
+  "icons": {
+    "16": "assets/logo16x16.png",
+    "32": "assets/logo32x32.png",
+    "48": "assets/logo48x48.png",
+    "128": "assets/logo128x128.png"
+  },
   "action": {
     "default_popup": "index.html?#/popup",
-    "default_icon": "assets/logo.png",
+    "default_icon": "assets/logo128x128.png",
     "default_title": "x-tools"
   },
   "options_page": "",
@@ -24,6 +29,7 @@
       ]
     }
   ],
+  "homepage_url": "https://github.com/xyz327/x-tools",
   "background": {
 
   },
