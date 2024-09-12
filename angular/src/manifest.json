@@ -4,9 +4,6 @@
   "short_name": "x-tools",
   "version": "1.1.0",
   "description": "a tools extension for common developer",
-  "permissions": [
-      "clipboardWrite"
-  ],
   "icons": {
     "16": "assets/logo16x16.png",
     "32": "assets/logo32x32.png",
@@ -19,16 +16,6 @@
     "default_title": "x-tools"
   },
   "options_page": "",
-  "content_scripts": [
-    {
-      "js": [
-        "contentPage.js"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
-  ],
   "homepage_url": "https://github.com/xyz327/x-tools",
   "background": {
 
