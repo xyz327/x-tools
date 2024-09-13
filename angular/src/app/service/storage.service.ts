@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, PartialObserver, Subscribable, Unsubscribable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,9 @@ export class StorageService {
   private wrapKey(key: string): string {
     return this.keyPrefix + key
   }
+  // getStorageValue<T>(key: string, defVal: T, convert:(string)=>T): StorageValue<T> {
+  //   return new StorageValue(this, key, defVal, convert)
+  // }
 }
+
+

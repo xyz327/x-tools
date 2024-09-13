@@ -3,6 +3,7 @@ import { ToastService } from './../../service/toast.service';
 import { CopyService } from './../../service/copy.service';
 import { StorageService } from './../../service/storage.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AutoCopyValue, BooleanStorageValue, IntStorageValue, StringStorageValue } from 'src/app/service/storage-value';
 
 @Component({
   selector: 'app-random-string',
@@ -15,8 +16,6 @@ export class RandomStringComponent implements OnInit {
   customStorageKey = 'RandomStringCustomContent'
   lengthStorageKey = 'RandomStringCustomLength'
   value: string
-  _length = 10
-  _customCandidate = ''
   generateBtnIcon: IconProp = ['fas', 'plus']
   generateBtnName = '生成'
   candidates = [
@@ -25,62 +24,66 @@ export class RandomStringComponent implements OnInit {
     new Candidate("数字", false, "1234567890"),
     new Candidate("特殊符号", false, "!#%&"),
   ]
-  autoCopy = true
-  constructor(private storageService: StorageService, private copyService: CopyService, private toastService: ToastService) { }
+  autoCopy: AutoCopyValue
+  length: IntStorageValue
+  customCandidate: StringStorageValue
+  constructor(private storageService: StorageService, private copyService: CopyService, private toastService: ToastService) {
+    this.autoCopy = new AutoCopyValue(this.storageService)
+    this.length = new IntStorageValue(this.storageService, "RandomStringLength", 10)
+    this.length.subscribe(val => {
+      if (val <= 0) {
+        this.length.value = 1
+      }
+    })
+    this.customCandidate = new StringStorageValue(this.storageService, "RandomStringCustomContent", "")
+    this.candidates.forEach(val => val.withStorageValue(this.storageService))
+   }
 
   ngOnInit(): void {
-    this._customCandidate = this.storageService.computeIfAbsent(this.customStorageKey, () => '')
-    this._length = +this.storageService.computeIfAbsent(this.lengthStorageKey, () => 10)
-    const content = this.storageService.computeIfAbsent(this.storageKey, () => {
-      return JSON.stringify(this.candidates)
-    })
-    this.candidates = JSON.parse(content)
-
     this.generate()
   }
-  get length(): number {
-    return this._length;
-  }
-  set length(length: number) {
-    this._length = length
-    this.storageService.set(this.lengthStorageKey, this._length + '')
-  }
-  get customCandidate(): string {
-    return this._customCandidate;
-  }
-  set customCandidate(customCandidate: string) {
-    this._customCandidate = [...new Set(customCandidate.split(''))].join('')
-    this.storageService.set(this.customStorageKey, this._customCandidate)
-  }
   generate(): void {
-    let content = this.candidates.filter(val => val.enabled).map(val => val.content).join('') + this.customCandidate
-    content = [...new Set(content.split(''))].join('')
+    let content = this.candidates.filter(val => val.enabled).map(val => val.content).join('')
+    content += this.customCandidate.value
     let n = "";
-    for (let i = 0; i < this.length; i++) {
-      n += content.charAt(Math.floor(Math.random() * content.length));
+    for (let i = 0; i < this.length.value; i++) {
+      n += content.charAt(Math.floor(Math.random() * content.length) % content.length);
     }
     this.value = n
-
-    this.storageService.set(this.storageKey, JSON.stringify(this.candidates))
-
-    this.copyService.copy2Clipboard(this.value)
-      .then(() => {
-        this.generateBtnName = "结果已复制"
-        this.generateBtnIcon = ['fas', 'copy']
-        setTimeout(() => {
-          this.generateBtnIcon = ['fas', 'plus']
-          this.generateBtnName = '生成'
-        }, 1000);
-      })
+//    if (this.autoCopy.value){
+      this.copy()
+//    }
   }
-
+  copy(): void {
+    this.copyService.copy2Clipboard(this.value)
+    .then(() => {
+      this.generateBtnName = "结果已复制"
+      this.generateBtnIcon = ['fas', 'copy']
+      setTimeout(() => {
+        this.generateBtnIcon = ['fas', 'plus']
+        this.generateBtnName = '生成'
+      }, 1000);
+    })
+  }
   clearCustom(): void {
-    this.customCandidate = '';
-    this.storageService.clear(this.customStorageKey)
+    this.customCandidate.value = '';
   }
 }
 
 class Candidate {
-  constructor(public name: string, public enabled: boolean, public content: string) { }
+  private value: BooleanStorageValue
+  constructor(public name: string, private _enabled: boolean, public content: string) { }
 
+  get enabled(): boolean {
+    return this._enabled
+  }
+  set enabled(value: boolean) {
+    this._enabled = value
+    this.value.value = value
+  }
+  withStorageValue(storageService: StorageService): Candidate {
+    this.value = new BooleanStorageValue(storageService, this.name, this._enabled)
+    this._enabled = this.value.value
+    return this
+  }
 }

@@ -9,6 +9,8 @@ import timezone from "dayjs/plugin/timezone"
 import _ from "lodash";
 import { Timezoneable, TodayRemain } from './today-remain';
 import timezones, { Timezone } from "timezones.json"
+import { Observable } from 'rxjs';
+import { AutoCopyValue, TimestampTypeValue, TimezoneValue } from 'src/app/service/storage-value';
 
 const defaultTz = "Asia/Hong_Kong"
 dayjs.extend(duration)
@@ -24,18 +26,18 @@ dayjs.tz.setDefault(defaultTz)
 export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
 
 
-  timezone: string = defaultTz
+  timezone: TimezoneValue
   // 输入框的值
   inputVal: string = ''
   // 输出框的值
   outputVal: string = ''
   // 自动复制
-  autoCopy: boolean = true
+  autoCopy: AutoCopyValue
   // 支持的时间戳格式
   allTimestampType: TimestampType[] = [new SecondType(), new MillisecondType()]
   allTimezone: Timezone[] = timezones
   timestampTypeMap: Map<string, TimestampType> = new Map()
-  currentTimestampType: string = this.allTimestampType[0].key
+  timestampType: TimestampTypeValue
   // 复制按钮
   copyBtnMap: Map<string, CopyBtnInfo> = new Map([
     ['inputVal', new CopyBtnInfo()],
@@ -50,9 +52,19 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
     this.allTimestampType.forEach((val: TimestampType) => {
       this.timestampTypeMap.set(val.key, val)
     })
+    this.autoCopy = new AutoCopyValue(this.storageService)
+    this.timestampType = new TimestampTypeValue(this.storageService)
+    this.timestampType.subscribe((val)=>{
+      this.showDate()
+    })
+    this.timezone = new TimezoneValue(this.storageService)
+    this.timezone.subscribe((val)=>{
+      dayjs.tz.setDefault(val)
+      this.showDate()
+    })
   }
   getTimezone(): string {
-    return this.timezone
+    return this.timezone.value
   }
 
   ngOnInit(): void {
@@ -69,19 +81,19 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
 
   showNowDate(): void {
     const now = dayjs();
-    const timestampType = this.timestampTypeMap.get(this.currentTimestampType)
+    const timestampType = this.timestampTypeMap.get(this.timestampType.value)
     this.inputVal = timestampType.toTimestamp(now)
     this.showDate()
   }
   getInitInputVal(): string {
     return this.storageService.computeIfAbsent(this.storageKey, () => {
       const now = dayjs();
-      const timestampType = this.timestampTypeMap.get(this.currentTimestampType)
+      const timestampType = this.timestampTypeMap.get(this.timestampType.value)
       return timestampType.toTimestamp(now)
     });
   }
   showDate(first: boolean = false) {
-    const timestampType = this.timestampTypeMap.get(this.currentTimestampType)
+    const timestampType = this.timestampTypeMap.get(this.timestampType.value)
     if (this.inputVal == '') {
       this.inputVal = this.getInitInputVal()
     }
@@ -92,7 +104,7 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
     if (isTimestamp) {
       const isUnix = this.inputVal.length == 10;
       date = isUnix ? dayjs.unix(timestamp) : dayjs(timestamp);
-      date = date.tz(this.timezone)
+      date = date.tz(this.timezone.value)
       this.outputVal = timestampType.toDate(date);
     } else {
       date = dayjs(this.inputVal);
@@ -116,8 +128,7 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
     return dayjs(inputVal, this.extDateFormats)
   }
   timezoneChange() {
-    dayjs.tz.setDefault(this.timezone)
-    this.showDate()
+    
   }
   timestampTypeChange() {
     this.showDate()

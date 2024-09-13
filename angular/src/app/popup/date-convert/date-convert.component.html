@@ -1,5 +1,4 @@
-<div class="container w-[38rem] max-w-2xl">
-
+<div>
   <div class="grid grid-cols-1 gap-1 p-2">
     <div class="form-control">
       <div class="input-group">
@@ -21,7 +20,7 @@
         (click)="showNowDate()">
         当前时间</button>
       <div class="col-start-5 col-span-2 ">
-        <select name="type" [(ngModel)]="currentTimestampType" (change)="timestampTypeChange()"
+        <select name="type" [(ngModel)]="timestampType.value"
           class="select select-bordered  mx-2 rounded-lg border">
           <ng-container *ngFor="let item of allTimestampType">
             <option [value]="item.key" class="m-2">{{item.desc}}</option>
@@ -32,7 +31,7 @@
       <div class="form-control col-start-9 col-span-2">
         <label class="label cursor-pointer">
           <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
-          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy" />
+          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy.value"/>
         </label>
       </div>
       <button class="btn btn-warning col-start-11 col-span-2 p-2 rounded-lg gap-2" (click)="clearDate()">
@@ -56,7 +55,7 @@
         <span class="label-text">时区</span>
         <span class="label-text-alt"></span>
       </div>
-      <select name="type" [(ngModel)]="timezone" (change)="timezoneChange()"
+      <select name="type" [(ngModel)]="timezone.value" (change)="timezoneChange()"
         class="select select-bordered  mx-2 rounded-lg border">
         <ng-container *ngFor="let item of allTimezone">
           <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})</option>
