@@ -1,10 +1,10 @@
 <div>
   <div class="grid grid-cols-1 gap-1 p-2">
     <div class="form-control">
-      <div class="input-group">
+      <div class="join">
         <input type="text" placeholder="支持时间戳(秒,毫秒)/时间字符串" [(ngModel)]="inputVal" (ngModelChange)="showDate()"
-          class="w-full pr-16 input input-primary input-lg  text-3xl">
-        <button class="input-lg rounded-l-none btn btn-primary gap-2"
+          class="w-full pr-16 input input-primary input-lg  text-3xl join-item">
+        <button class="input-lg rounded-l-none btn btn-primary gap-2 join-item"
           [ngClass]="copyBtnMap.get('inputVal').loading?'loading':''" (click)="copy('inputVal')">
           <fa-icon icon="copy"></fa-icon>
           {{copyBtnMap.get('inputVal').text}}
@@ -40,35 +40,34 @@
       </button>
     </div>
     <div class="form-control">
-      <div class="input-group">
+      <div class="join">
         <input disabled type="text" placeholder="时间" [value]="outputVal"
-          class="w-full pr-16 input input-primary input-lg input-bordered text-3xl ">
-        <button class="input-lg rounded-l-none btn btn-primary gap-2"
+          class="w-full pr-16 input input-primary input-lg input-bordered text-3xl join-item">
+        <button class="input-lg btn btn-primary gap-2 join-item"
           [ngClass]="copyBtnMap.get('outputVal').loading?'loading':''" (click)="copy('outputVal')">
           <fa-icon icon="copy"></fa-icon>
           {{copyBtnMap.get('outputVal').text}}
         </button>
       </div>
     </div>
-    <div class="form-control">
-      <div class="label">
-        <span class="label-text">时区</span>
-        <span class="label-text-alt"></span>
+    <div class="form-control pt-1">
+      <div class="join">
+        <select name="type" [(ngModel)]="timezone.value" (change)="timezoneChange()"
+          class="w-full pr-16 select select-bordered input-lg join-item">
+          <ng-container *ngFor="let item of allTimezone">
+            <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})</option>
+          </ng-container>
+        </select>
+        <span class="join-item bg-base-300 flex items-center px-4 w-40 text-lg text-gray-600">
+          <fa-icon icon="earth-asia"></fa-icon>
+          <span class="ml-1">当前时区</span>
+        </span>
       </div>
-      <select name="type" [(ngModel)]="timezone.value" (change)="timezoneChange()"
-        class="select select-bordered  mx-2 rounded-lg border">
-        <ng-container *ngFor="let item of allTimezone">
-          <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})</option>
-        </ng-container>
-      </select>
+
     </div>
   </div>
   <div class="divider"></div>
-  <ul>
-    <li>
 
-    </li>
-  </ul>
   <div class="overflow-x-auto">
     <table class="table w-full">
       <tbody>

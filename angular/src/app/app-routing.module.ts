@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'options',
     loadChildren: () => import('./modules/options/options.module').then(m => m.OptionsModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'popup'
   }
 ];
 

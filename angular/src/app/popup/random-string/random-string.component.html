@@ -1,45 +1,48 @@
 <div>
   <div class="grid grid-cols-1 gap-1 p-2">
     <div class="form-control">
-      <div class="input-group">
-        <input type="text" disabled class="w-full pr-16 input input-primary input-lg  text-3xl" [(ngModel)]="value">
-        <button class="input-lg rounded-l-none btn btn-primary gap-2" (click)="generate()">
+      <div class="join">
+        <input  *ngIf="length.value<=25" type="text" disabled class="w-full pr-16 input input-primary input-lg  text-3xl join-item"
+          [(ngModel)]="value">
+          <textarea *ngIf="length.value>25" type="text" disabled class="w-full pr-16 textarea textarea-primary text-3xl join-item"
+          [(ngModel)]="value"></textarea>
+        <button class="input-lg rounded-l-none btn btn-primary gap-2 hoin-item" (click)="generate()">
           <fa-icon [icon]="generateBtnIcon"></fa-icon>
           {{generateBtnName}}
         </button>
       </div>
     </div>
-
+    <!--
     <div class="form-control m-2 grid grid-cols-5">
         <!-- <label class="label cursor-pointer col-span-1 float-right">
           <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
           <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy.value"/>
-        </label> -->
-    </div>
+        </label>
+    </div> -->
     <div class="grid grid-cols-12 m-2 mt-5">
-      <div class="input-group col-span-3">
-        <label class="btn btn-primary btn-xs">长度</label>
-        <input type="number" class="input input-primary input-xs w-[5rem]" [(ngModel)]="length.value" />
+      <div class="join col-span-3">
+        <label class="btn btn-primary btn-sm join-item">长度</label>
+        <input type="number" class="input input-primary input-sm w-[5rem] join-item" [(ngModel)]="length.value" />
       </div>
       <div class="col-span-9 ">
-        <div class="form-control float-right mr-1" *ngFor="let item of candidates">
-          <div class="input-group input-group-xs">
-            <span>
-              <label class="text-xs tooltip" [for]="item.name" [attr.data-tip]="item.content">{{item.name}}</label>
+        <div class="form-control float-right mr-2" *ngFor="let item of candidates">
+          <div class="join">
+            <span class="join-item bg-base-300 flex items-center">
+              <label class="text-sm tooltip mx-1" [for]="item.name" [attr.data-tip]="item.content">{{item.name}}</label>
             </span>
-            <input type="checkbox" [id]="item.name" class="checkbox checkbox-primary checkbox-xs"
+            <input type="checkbox" [id]="item.name" class="checkbox checkbox-primary checkbox-sm join-item"
               [(ngModel)]="item.enabled" />
           </div>
         </div>
       </div>
     </div>
     <div class="form-control m-2">
-      <div class="input-group input-group-xs">
-        <span class="btn btn-primary">自定义内容</span>
-        <input type="text" class="input input-primary w-full" [(ngModel)]="customCandidate.value" />
-        <button class="btn btn-warning" (click)="clearCustom()">清空</button>
+      <div class="join">
+        <span class="btn btn-primary join-item">自定义内容</span>
+        <input  type="text" class="input input-primary w-full join-item"
+          [(ngModel)]="customCandidate.value" />
+        <button class="btn btn-warning join-item" (click)="clearCustom()">清空</button>
       </div>
     </div>
   </div>
 </div>
-

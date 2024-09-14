@@ -31,5 +31,3 @@ export class StorageService {
   //   return new StorageValue(this, key, defVal, convert)
   // }
 }
-
-
