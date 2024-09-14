@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
+  standalone: false,
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
