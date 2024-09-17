@@ -1,3 +1,4 @@
+import { WorkRemain } from 'src/app/service/work-remain';
 import { StorageService } from './../../service/storage.service';
 import { FeatureInfo, FeatureInfoService } from './../feature.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -24,7 +25,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     const lastUsedFeature = this.storageService.get(this.lastUsedFeatureKey);
     if (lastUsedFeature) {
-      const feature:FeatureInfo = this.features.find(val => val.key === lastUsedFeature);
+      const feature: FeatureInfo = this.features.find(val => val.key === lastUsedFeature);
       if (feature) {
         this.gotoFeature(feature)
       }
@@ -36,6 +37,12 @@ export class IndexComponent implements OnInit {
       console.log(val)
     })
     this.storageService.set(this.lastUsedFeatureKey, feature.key);
+  }
+
+  gotoSettings() {
+    this.router.navigate(['settings'], { relativeTo: this.activatedRoute.parent }).then(val => {
+      console.log(val)
+    })
   }
 }
 

@@ -8,8 +8,11 @@ import { IndexComponent } from './index/index.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { RandomStringComponent } from './random-string/random-string.component';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+
+import { SettingsComponent } from './settings/settings.component';
 @NgModule({
-  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent, RandomStringComponent],
-  imports: [CommonModule,FormsModule, PopupRoutingModule,FontAwesomeModule]
+  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent, RandomStringComponent,SettingsComponent],
+  imports: [CommonModule,FormsModule, PopupRoutingModule,FontAwesomeModule,NzTimePickerModule]
 })
 export class PopupModule {}

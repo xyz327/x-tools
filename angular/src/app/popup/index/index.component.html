@@ -1,13 +1,19 @@
 
 <div class="container w-[46rem]">
   <div class="navbar bg-base-100">
-    <a class="btn btn-ghost normal-case text-xl" href="https://github.com/xyz327/x-tools" target="_blank">x-tools</a>
+    <a class="btn btn-ghost normal-case text-xl" href="https://github.com/xyz327/x-tools" target="_blank">
+      <img src="../../../assets/logo32x32.png" class="h-6 w-6"/>x-tools</a>
+    <div class="flex ml-auto">
+      <a class="btn btn-ghost normal-case text-xl" href="javascript:void(0);" (click)="gotoSettings()">
+        <fa-icon icon="gear" size="lg"></fa-icon>
+      </a>
+    </div>
   </div>
   <div class="grid grid-cols-3 gap-4 pb-4 pl-4">
-    <div *ngFor="let item of features" class="card card-compact	card-side bg-gray-100 px-2 hover:bg-gray-300 cursor-pointer" (click)="gotoFeature(item)">
+    <div *ngFor="let item of features" class="card card-compact bg-base-200	card-side px-2 hover:bg-base-300 cursor-pointer" (click)="gotoFeature(item)">
 
       <div class="mt-4">
-        <fa-icon [icon]="item.icon"></fa-icon>
+        <fa-icon [icon]="item.icon" size="4x"></fa-icon>
       </div>
 
       <div class="card-body">

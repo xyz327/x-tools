@@ -23,9 +23,7 @@
             "outputPath": "angular/dist",
             "index": "angular/src/index.html",
             "main": "angular/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "angular/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -35,7 +33,10 @@
               "angular/src/side_panel.html",
               "angular/src/side_panel.js"
             ],
-            "styles": ["angular/src/styles.scss"],
+            "styles": [
+              "angular/src/styles.scss",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -92,6 +93,7 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "packageManager": "pnpm"
   }
 }

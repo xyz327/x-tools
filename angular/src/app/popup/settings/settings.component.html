@@ -1,0 +1,49 @@
+<div class="container w-[42rem] max-w-2xl">
+  <div class="navbar bg-base-100">
+    <a class="btn btn-ghost normal-case text-xl" (click)="backIndex()">
+      <fa-icon icon="reply"></fa-icon>
+      <span class="font-bold text-center text-xl">设置</span>
+    </a>
+  </div>
+  <div class="grid gap-1 p-2">
+    <div class="join">
+      <span class="join-item bg-base-300 flex items-center px-4 text-xl text-gray-600">
+        <fa-icon icon="person-running" size="xl"></fa-icon>
+        <span class="ml-1">下班时间</span>
+      </span>
+      <nz-time-picker class="join-item" [(ngModel)]="offworkTime.value" [nzDefaultOpenValue]="defaultOpenValue"
+        nzFormat="HH:mm"></nz-time-picker>
+      <div class="join-item">
+        <label class="label cursor-pointer">
+          <span class="label-text tooltip" data-tip="显示下班剩余时间">显示</span>
+          <input type="checkbox" class="toggle toggle-primary" [(ngModel)]="showWorkRemain.value" />
+        </label>
+      </div>
+    </div>
+
+    <div class="join">
+      <span class="join-item bg-base-300 flex items-center px-4 text-xl text-gray-600">
+        <fa-icon icon="hourglass-end" size="xl"></fa-icon>
+        <span class="ml-1">今天剩余时间</span>
+      </span>
+      <div class="join-item form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text tooltip" data-tip="显示今天剩余时间">显示</span>
+          <input type="checkbox" class="toggle toggle-primary" [(ngModel)]="showTodayRemain.value" />
+        </label>
+      </div>
+    </div>
+
+    <div class="join">
+      <span class="join-item bg-base-300 flex items-center px-4 text-xl text-gray-600">
+        <fa-icon icon="circle-half-stroke" size="xl"></fa-icon>
+        <span class="ml-1">自动暗黑模式</span>
+      </span>
+      <div class="join-item form-control">
+        <label class="label cursor-pointer">
+          <input type="checkbox" class="toggle toggle-primary" [(ngModel)]="autoDarkMode.value" />
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

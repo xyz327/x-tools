@@ -7,10 +7,11 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import _ from "lodash";
-import { Timezoneable, TodayRemain } from './today-remain';
+import { TodayRemain } from '../../service/today-remain';
 import timezones, { Timezone } from "timezones.json"
 import { Observable } from 'rxjs';
 import { AutoCopyValue, TimestampTypeValue, TimezoneValue } from 'src/app/service/storage-value';
+import { WorkRemain } from 'src/app/service/work-remain';
 
 const defaultTz = "Asia/Hong_Kong"
 dayjs.extend(duration)
@@ -23,7 +24,7 @@ dayjs.tz.setDefault(defaultTz)
   templateUrl: './date-convert.component.html',
   styleUrls: ['./date-convert.component.scss']
 })
-export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
+export class DateConvertComponent implements OnInit, OnDestroy {
 
 
   timezone: TimezoneValue
@@ -45,20 +46,25 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
   ])
   storageKey = 'lastDateConvertTime'
   // 今天剩余时间
-  todayRemain: TodayRemain = new TodayRemain(this)
+  todayRemain: TodayRemain
+  workRemain: WorkRemain
+
   // 额外的时间格式
   extDateFormats = ["YYYY年MM月DD日", "YYYY年MM月DD日 HH时mm分ss秒"]
   constructor(private storageService: StorageService, private copyService: CopyService) {
+    this.workRemain = new WorkRemain(this.storageService)
+    this.todayRemain = new TodayRemain(this.storageService)
+
     this.allTimestampType.forEach((val: TimestampType) => {
       this.timestampTypeMap.set(val.key, val)
     })
     this.autoCopy = new AutoCopyValue(this.storageService)
     this.timestampType = new TimestampTypeValue(this.storageService)
-    this.timestampType.subscribe((val)=>{
+    this.timestampType.subscribe((val) => {
       this.showDate()
     })
     this.timezone = new TimezoneValue(this.storageService)
-    this.timezone.subscribe((val)=>{
+    this.timezone.subscribe((val) => {
       dayjs.tz.setDefault(val)
       this.showDate()
     })
@@ -128,7 +134,7 @@ export class DateConvertComponent implements OnInit, OnDestroy,Timezoneable {
     return dayjs(inputVal, this.extDateFormats)
   }
   timezoneChange() {
-    
+
   }
   timestampTypeChange() {
     this.showDate()

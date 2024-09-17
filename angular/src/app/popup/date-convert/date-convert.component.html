@@ -20,8 +20,7 @@
         (click)="showNowDate()">
         当前时间</button>
       <div class="col-start-5 col-span-2 ">
-        <select name="type" [(ngModel)]="timestampType.value"
-          class="select select-bordered  mx-2 rounded-lg border">
+        <select name="type" [(ngModel)]="timestampType.value" class="select select-bordered  mx-2 rounded-lg border">
           <ng-container *ngFor="let item of allTimestampType">
             <option [value]="item.key" class="m-2">{{item.desc}}</option>
           </ng-container>
@@ -31,7 +30,7 @@
       <div class="form-control col-start-9 col-span-2">
         <label class="label cursor-pointer">
           <span class="label-text tooltip" data-tip="转换后自动复制结果">自动复制</span>
-          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy.value"/>
+          <input type="checkbox" class="toggle toggle-primary toggle-xs" [(ngModel)]="autoCopy.value" />
         </label>
       </div>
       <button class="btn btn-warning col-start-11 col-span-2 p-2 rounded-lg gap-2" (click)="clearDate()">
@@ -55,25 +54,41 @@
         <select name="type" [(ngModel)]="timezone.value" (change)="timezoneChange()"
           class="w-full pr-16 select select-bordered input-lg join-item">
           <ng-container *ngFor="let item of allTimezone">
-            <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})</option>
+            <option [value]="item.utc[0]" class="m-2">{{item.value}}(UTC{{item.offset>0 ?'+'+item.offset:item.offset}})
+            </option>
           </ng-container>
         </select>
-        <span class="join-item bg-base-300 flex items-center px-4 w-40 text-lg text-gray-600">
+        <span class="join-item bg-base-300 flex items-center px-4 w-32 text-xl text-gray-600">
           <fa-icon icon="earth-asia"></fa-icon>
-          <span class="ml-1">当前时区</span>
+          <span class="ml-1">时区</span>
         </span>
       </div>
-
     </div>
   </div>
   <div class="divider"></div>
-
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto" *ngIf="workRemain.show">
     <table class="table w-full">
       <tbody>
         <!-- row 1 -->
         <tr>
-          <th>今天还剩:</th>
+          <th class="w-72">下班还剩({{workRemain.offWorkTimeValue}}):</th>
+          <td>
+            <span class="countdown font-mono text-2xl">
+              <span style="--value:{{workRemain.hours}};"></span>时
+              <span style="--value:{{workRemain.minutes}};"></span>分
+              <span style="--value:{{workRemain.seconds}};"></span>秒
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="overflow-x-auto" *ngIf="todayRemain.show">
+    <table class="table w-full">
+      <tbody>
+        <!-- row 1 -->
+        <tr>
+          <th class="w-72">今天还剩:</th>
           <td>
             <span class="countdown font-mono text-2xl">
               <span style="--value:{{todayRemain.hours}};"></span>时

@@ -31,6 +31,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "ng-zorro-antd": "18.1.1",
     "ngx-build-plus": "^18.0.0",
     "rxjs": "~7.8.1",
     "timezones.json": "^1.7.1",

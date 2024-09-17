@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DateConvertComponent } from 'src/app/popup/date-convert/date-convert.component';
 import { IndexComponent } from "src/app/popup/index/index.component";
 import { RandomStringComponent } from './random-string/random-string.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         component: RandomStringComponent
       },
     ]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent
   },
   {
     path: '',
