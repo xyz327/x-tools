@@ -14,3 +14,28 @@
 
 
 ## [Edge Store](https://microsoftedge.microsoft.com/addons/detail/mchafbpemedphelmppmflakeihnnmejp)
+
+
+
+# 开发
+1. 安装 pnpm
+```bash
+npm i -g pnpm
+```
+2. 安装 rollup
+```bash
+pnpm i -g rollup
+```
+3. 安装依赖
+```bash
+npm run init-dep
+```
+4. 启动服务:使用 web 预览  
+```bash
+  ng serve
+```  
+5. 启动服务:使用浏览器插件预览  
+```bash
+npm run start
+# 然后在浏览器中加载插件
+```
