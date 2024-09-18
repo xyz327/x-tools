@@ -1,6 +1,6 @@
 {
   "name": "x-tools",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "tools for developer",
   "scripts": {
     "ng": "ng",
