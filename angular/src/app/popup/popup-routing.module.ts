@@ -6,6 +6,7 @@ import { DateConvertComponent } from 'src/app/popup/date-convert/date-convert.co
 import { IndexComponent } from "src/app/popup/index/index.component";
 import { RandomStringComponent } from './random-string/random-string.component';
 import { SettingsComponent } from './settings/settings.component';
+import { EncodingComponent } from './encoding/encoding.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         path: 'random-string',
         component: RandomStringComponent
       },
+      {
+        path: 'encoding',
+        component: EncodingComponent
+      }
     ]
   },
   {
@@ -32,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    pathMatch:'full',
+    pathMatch: 'full',
     redirectTo: 'index'
   }
 ];

@@ -47,9 +47,15 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^6.1.1
         version: 6.6.0
-      ng-zorro-antd:
-        specifier: 18.1.1
-        version: 18.1.1(5uxyyr7qpz6qojrcrnipqgmexe)
+      crypto-js:
+        specifier: ^4.2.0
+        version: 4.2.0
+      dayjs:
+        specifier: ^1.11.5
+        version: 1.11.13
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       ngx-build-plus:
         specifier: ^18.0.0
         version: 18.0.0(@angular-devkit/build-angular@18.2.4(@angular/compiler-cli@18.2.4(@angular/compiler@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(typescript@5.4.5))(@types/node@12.20.55)(chokidar@3.6.0)(tailwindcss@3.4.10(ts-node@10.3.1(@types/node@12.20.55)(typescript@5.4.5)))(typescript@5.4.5))(chokidar@3.6.0)(rxjs@7.8.1)
@@ -93,12 +99,6 @@ importers:
       daisyui:
         specifier: ^4.12.10
         version: 4.12.10(postcss@8.4.45)
-      dayjs:
-        specifier: ^1.11.5
-        version: 1.11.13
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -219,13 +219,6 @@ packages:
       tailwindcss:
         optional: true
 
-  '@angular/cdk@18.2.4':
-    resolution: {integrity: sha512-o+TuxZDqStfkviEkCR05pVyP6R2RIruEs/45Cms76hlsIheMoxRaxir/yrHdh4tZESJJhcO/EVE+aymNIRWAfg==}
-    peerDependencies:
-      '@angular/common': ^18.0.0 || ^19.0.0
-      '@angular/core': ^18.0.0 || ^19.0.0
-      rxjs: ^6.5.3 || ^7.4.0
-
   '@angular/cli@18.2.4':
     resolution: {integrity: sha512-n+Y2xlgcpTZ+MZmycf2b3ceVvANDJFkDEodobVtyG63WvGOhkZ3aGhT7sHguKpAQwJLicSf8zF2z+v1Yi0DvRw==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
@@ -303,17 +296,6 @@ packages:
       '@angular/core': 18.2.4
       '@angular/platform-browser': 18.2.4
       rxjs: ^6.5.3 || ^7.4.0
-
-  '@ant-design/colors@7.1.0':
-    resolution: {integrity: sha512-MMoDGWn1y9LdQJQSHiCC20x3uZ3CwQnv9QMz6pCmJOrqdgM9YxsoVVY0wtrdXbmfSgnV0KNk6zi09NAhMR2jvg==}
-
-  '@ant-design/icons-angular@18.0.0':
-    resolution: {integrity: sha512-nxNtHKd7MyGNnEyv22NK5hZ/Pczp63XJfej9zPjxiXm0wvJeIdMNUPOKtsdVkyPTRjRGHGe7F9M0Gv9SmyIjrQ==}
-    peerDependencies:
-      '@angular/common': ^18.0.0
-      '@angular/core': ^18.0.0
-      '@angular/platform-browser': ^18.0.0
-      rxjs: ^6.4.0 || ^7.4.0
 
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
@@ -914,10 +896,6 @@ packages:
   '@cspotcode/source-map-support@0.7.0':
     resolution: {integrity: sha512-X4xqRHqN8ACt2aHVe51OxeA2HjbcL4MqFqXkrmQszJ1NOUuUu5u6Vqx/0lZSVNku7velL5FC/s5uEAj1lsBMhA==}
     engines: {node: '>=12'}
-
-  '@ctrl/tinycolor@3.6.1':
-    resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
-    engines: {node: '>=10'}
 
   '@discoveryjs/json-ext@0.6.1':
     resolution: {integrity: sha512-boghen8F0Q8D+0/Q1/1r6DUEieUJ8w2a1gIknExMSHBsJFOr2+0KUfHiVYBvucPwl3+RU5PFBK833FjFCh3BhA==}
@@ -2286,6 +2264,9 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+
   css-loader@7.1.2:
     resolution: {integrity: sha512-6WvYYn7l/XEGN8Xu2vWFt9nVzrCn39vKyTEFf/ExEyoksJjjSZV/0/35XPlMbpnr6VGhZIUg5yJrL8tGfes/FA==}
     engines: {node: '>= 18.12.0'}
@@ -2332,10 +2313,6 @@ packages:
   data-view-byte-offset@1.0.0:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
-
-  date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
 
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
@@ -3432,16 +3409,6 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
-
-  ng-zorro-antd@18.1.1:
-    resolution: {integrity: sha512-YbJN/87XGsKbAwBJH7ci/01Y30QCwJsQU8FtVhtAd5JsB/NsBAfYfsIoPgch6ZUPZ3Jo2+3UA/pTCx1DliagHg==}
-    peerDependencies:
-      '@angular/animations': ^18.0.0
-      '@angular/common': ^18.0.0
-      '@angular/core': ^18.0.0
-      '@angular/forms': ^18.0.0
-      '@angular/platform-browser': ^18.0.0
-      '@angular/router': ^18.0.0
 
   ngx-build-plus@18.0.0:
     resolution: {integrity: sha512-dmnD5CpwopUPoN51ysoTLkS7Csqkgbs2dNLL5QI5pIhV4MxDXNE8+75QTwy8EPvK37t8RjGCTBdOqmAp8Rpa/g==}
@@ -4936,15 +4903,6 @@ snapshots:
       - supports-color
       - terser
 
-  '@angular/cdk@18.2.4(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)':
-    dependencies:
-      '@angular/common': 18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
-      '@angular/core': 18.2.4(rxjs@7.8.1)(zone.js@0.14.10)
-      rxjs: 7.8.1
-      tslib: 2.7.0
-    optionalDependencies:
-      parse5: 7.1.2
-
   '@angular/cli@18.2.4(chokidar@3.6.0)':
     dependencies:
       '@angular-devkit/architect': 0.1802.4(chokidar@3.6.0)
@@ -5033,19 +4991,6 @@ snapshots:
       '@angular/common': 18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
       '@angular/core': 18.2.4(rxjs@7.8.1)(zone.js@0.14.10)
       '@angular/platform-browser': 18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))
-      rxjs: 7.8.1
-      tslib: 2.7.0
-
-  '@ant-design/colors@7.1.0':
-    dependencies:
-      '@ctrl/tinycolor': 3.6.1
-
-  '@ant-design/icons-angular@18.0.0(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1)':
-    dependencies:
-      '@angular/common': 18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
-      '@angular/core': 18.2.4(rxjs@7.8.1)(zone.js@0.14.10)
-      '@angular/platform-browser': 18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))
-      '@ant-design/colors': 7.1.0
       rxjs: 7.8.1
       tslib: 2.7.0
 
@@ -5845,8 +5790,6 @@ snapshots:
     dependencies:
       '@cspotcode/source-map-consumer': 0.8.0
     optional: true
-
-  '@ctrl/tinycolor@3.6.1': {}
 
   '@discoveryjs/json-ext@0.6.1': {}
 
@@ -7154,6 +7097,8 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  crypto-js@4.2.0: {}
+
   css-loader@7.1.2(webpack@5.94.0(esbuild@0.23.0)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.45)
@@ -7212,10 +7157,6 @@ snapshots:
       call-bind: 1.0.7
       es-errors: 1.3.0
       is-data-view: 1.0.1
-
-  date-fns@2.30.0:
-    dependencies:
-      '@babel/runtime': 7.25.0
 
   dayjs@1.11.13: {}
 
@@ -8373,21 +8314,6 @@ snapshots:
   negotiator@0.6.3: {}
 
   neo-async@2.6.2: {}
-
-  ng-zorro-antd@18.1.1(5uxyyr7qpz6qojrcrnipqgmexe):
-    dependencies:
-      '@angular/animations': 18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))
-      '@angular/cdk': 18.2.4(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
-      '@angular/common': 18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
-      '@angular/core': 18.2.4(rxjs@7.8.1)(zone.js@0.14.10)
-      '@angular/forms': 18.2.4(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1)
-      '@angular/platform-browser': 18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))
-      '@angular/router': 18.2.4(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1)
-      '@ant-design/icons-angular': 18.0.0(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.4(@angular/animations@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1)
-      date-fns: 2.30.0
-      tslib: 2.7.0
-    transitivePeerDependencies:
-      - rxjs
 
   ngx-build-plus@18.0.0(@angular-devkit/build-angular@18.2.4(@angular/compiler-cli@18.2.4(@angular/compiler@18.2.4(@angular/core@18.2.4(rxjs@7.8.1)(zone.js@0.14.10)))(typescript@5.4.5))(@types/node@12.20.55)(chokidar@3.6.0)(tailwindcss@3.4.10(ts-node@10.3.1(@types/node@12.20.55)(typescript@5.4.5)))(typescript@5.4.5))(chokidar@3.6.0)(rxjs@7.8.1):
     dependencies:

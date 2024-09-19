@@ -34,8 +34,7 @@
               "angular/src/side_panel.js"
             ],
             "styles": [
-              "angular/src/styles.scss",
-              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+              "angular/src/styles.scss"
             ],
             "scripts": []
           },

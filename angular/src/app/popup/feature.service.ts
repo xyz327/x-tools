@@ -21,6 +21,12 @@ export class FeatureInfoService {
       desc: '随机字符串',
       icon: ['fas', 'shuffle']
     },
+    {
+      key: 'encoding',
+      name: '字符串编码',
+      desc: '字符串编码',
+      icon: ['fas', 'text-height']
+    },
     ]
   }
 }
