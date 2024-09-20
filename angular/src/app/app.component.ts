@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BooleanStorageValue } from './service/storage-value';
 import { StorageService } from './service/storage.service';
+import { ErrorEmiter } from './service/emit';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,8 @@ import { StorageService } from './service/storage.service';
 export class AppComponent {
   theme = 'light'
   autoDarkMode: BooleanStorageValue
-
-  constructor(private storageService: StorageService,) {
+  errorMsg = ''
+  constructor(private storageService: StorageService, private errorEmiter: ErrorEmiter) {
     // 晚上切换暗黑模式
     this.autoDarkMode = new BooleanStorageValue(this.storageService, "autoDarkMode", false)
     this.autoDarkMode.subscribe(autoDarkMode => {
@@ -24,6 +25,9 @@ export class AppComponent {
     if (this.autoDarkMode.value) {
       this.checkDarkMode()
     }
+    errorEmiter.subscribe((e) => {
+      this.errorMsg = e == null ? '' : e.message
+    })
   }
   checkDarkMode() {
     const hour = new Date().getHours()

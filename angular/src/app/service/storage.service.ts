@@ -11,6 +11,10 @@ export class StorageService {
   constructor() { }
 
 
+  clearAll() {
+    localStorage.clear()
+  }
+
   get(key: string): string {
     return localStorage.getItem(this.wrapKey(key))
   }

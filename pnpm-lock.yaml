@@ -47,6 +47,9 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^6.1.1
         version: 6.6.0
+      '@types/crypto-js':
+        specifier: ^4.2.2
+        version: 4.2.2
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1689,6 +1692,9 @@ packages:
 
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
+
+  '@types/crypto-js@4.2.2':
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -6417,6 +6423,8 @@ snapshots:
   '@types/connect@3.4.38':
     dependencies:
       '@types/node': 12.20.55
+
+  '@types/crypto-js@4.2.2': {}
 
   '@types/estree@1.0.5': {}
 
