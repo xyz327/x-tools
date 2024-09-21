@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, PartialObserver, Subscribable, Unsubscribable } from 'rxjs';
+import { StorageValueReset } from './storage-value';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,13 @@ export class StorageService {
 
   clearAll() {
     localStorage.clear()
+    StorageValueReset()
   }
 
   get(key: string): string {
     return localStorage.getItem(this.wrapKey(key))
   }
-  clear(key:string):void{
+  clear(key: string): void {
     localStorage.removeItem(this.wrapKey(key))
   }
   computeIfAbsent(key: string, callback: Function): string {

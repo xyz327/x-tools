@@ -1,12 +1,11 @@
 import { DOCUMENT } from "@angular/common";
 import { Injectable, ErrorHandler, Inject } from "@angular/core";
-import { StorageService } from "./service/storage.service";
-import { ErrorEmiter } from "./service/emit";
+import { ErrorMsgEmiter } from "./service/emit";
 
 
 @Injectable()
 export class CustomErrorHandler extends ErrorHandler {
-  constructor(@Inject(DOCUMENT) private doc: any, private errorEmiter:ErrorEmiter) {
+  constructor(@Inject(DOCUMENT) private doc: any, private errorEmiter:ErrorMsgEmiter) {
     super();
   }
   override handleError(error:any):void{
@@ -18,6 +17,6 @@ export class CustomErrorHandler extends ErrorHandler {
     this.reportError(error);
   }
   reportError(e: any) {
-    this.errorEmiter.next(e)
+    this.errorEmiter.next(e==null?'':e.message)
   }
 }

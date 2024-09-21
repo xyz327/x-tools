@@ -20,6 +20,11 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
+            "allowedCommonJsDependencies":[
+              "lodash",
+              "dayjs",
+              "crypto-js"
+            ],
             "outputPath": "angular/dist",
             "index": "angular/src/index.html",
             "main": "angular/src/main.ts",

@@ -2,9 +2,8 @@ import { StorageService } from 'src/app/service/storage.service';
 import { Component } from '@angular/core';
 import { StringStorageValue } from 'src/app/service/storage-value';
 import CryptoJS from "crypto-js";
-import MD5 from "crypto-js/md5";
 
-console.log('CryptoJS', CryptoJS, MD5)
+console.log('CryptoJS', CryptoJS)
 @Component({
   selector: 'app-encoding',
   templateUrl: './encoding.component.html',

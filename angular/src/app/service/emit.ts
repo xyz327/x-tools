@@ -19,7 +19,7 @@ export class Emiter<T> {
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorEmiter extends Emiter<Error> {
+export class ErrorMsgEmiter extends Emiter<string> {
   constructor() {
     super()
   }

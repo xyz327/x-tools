@@ -1,4 +1,4 @@
-import { ErrorEmiter } from './../../service/emit';
+import { ErrorMsgEmiter } from './../../service/emit';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import dayjs from 'dayjs';
@@ -12,6 +12,7 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class SettingsComponent {
 
+
   offworkTime: DateStorageValue
   offworkTimeValue: StringStorageValue
   defaultOpenValue = new Date(0, 0, 0, 18, 30, 0);
@@ -19,7 +20,7 @@ export class SettingsComponent {
   showTodayRemain: BooleanStorageValue
   autoDarkMode: BooleanStorageValue
   constructor(private storageService: StorageService,
-    private router: Router, private activatedRoute: ActivatedRoute, private errorEmiter: ErrorEmiter) {
+    private router: Router, private activatedRoute: ActivatedRoute, private errorMsgEmiter: ErrorMsgEmiter) {
 
     this.offworkTime = new DateStorageValue(storageService, "offWorkTime", "HH:mm", this.defaultOpenValue)
     this.showWorkRemain = new BooleanStorageValue(storageService, "showWorkRemain", false)
@@ -27,14 +28,20 @@ export class SettingsComponent {
     this.autoDarkMode = new BooleanStorageValue(storageService, "autoDarkMode", false)
 
     this.offworkTimeValue = new StringStorageValue(storageService, "offWorkTimeValue", "18:30")
-    this.offworkTimeValue.subscribe(v=>{
+    this.offworkTimeValue.subscribe(v => {
       this.offworkTime.value = dayjs(v, "HH:mm").toDate()
     })
   }
 
+  showClearDataModal() {
+    console.log('showClearDataModal', confirm)
+    if (confirm("确定要清除数据吗?")) {
+      this.clearData()
+    }
+  }
   clearData() {
     this.storageService.clearAll()
-    this.errorEmiter.next(null)
+    this.errorMsgEmiter.next('')
   }
 
   backIndex(): void {
