@@ -9,16 +9,14 @@
       </a>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-4 p-4">
-    <div *ngFor="let item of features" class="card card-compact bg-base-200	card-side px-2 hover:bg-base-300 cursor-pointer" (click)="gotoFeature(item)">
-
-      <div class="mt-4">
+  <div class="grid grid-cols-3 gap-4 px-4 pb-6">
+    <div *ngFor="let item of features" class="card card-compact shadow-xl bg-base-200	card-side pl-2 hover:bg-base-300 cursor-pointer "
+    (click)="gotoFeature(item)">
+      <div class="mt-3">
         <fa-icon [icon]="item.icon" size="3x"></fa-icon>
       </div>
-
-      <div class="card-body">
+      <div class="card-body tooltip" [attr.data-tip]="item.desc">
         <div class="card-title">{{item.name}}</div>
-        <div>{{item.desc}}</div>
       </div>
     </div>
   </div>
