@@ -27,6 +27,13 @@ export class FeatureInfoService {
       desc: '字符串编码',
       icon: ['fas', 'text-height']
     },
+
+    {
+      key: 'json',
+      name: 'JSON',
+      desc: 'JSON解析和格式化',
+      icon: ['fas', 'code']
+    },
     ]
   }
 }

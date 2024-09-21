@@ -7,6 +7,7 @@ import { IndexComponent } from "src/app/popup/index/index.component";
 import { RandomStringComponent } from './random-string/random-string.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EncodingComponent } from './encoding/encoding.component';
+import { JsonComponent } from './json/json.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'encoding',
         component: EncodingComponent
+      },
+      {
+        path: 'json',
+        component: JsonComponent
       }
     ]
   },

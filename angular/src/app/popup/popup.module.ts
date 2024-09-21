@@ -12,8 +12,9 @@ import { RandomStringComponent } from './random-string/random-string.component';
 
 import { SettingsComponent } from './settings/settings.component';
 import { EncodingComponent } from './encoding/encoding.component';
+import { JsonComponent } from './json/json.component';
 @NgModule({
-  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent, RandomStringComponent,SettingsComponent,EncodingComponent],
+  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent, RandomStringComponent,SettingsComponent,EncodingComponent,JsonComponent],
   imports: [CommonModule,FormsModule, PopupRoutingModule,FontAwesomeModule]
 })
 export class PopupModule {}

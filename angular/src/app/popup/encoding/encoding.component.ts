@@ -2,6 +2,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { Component } from '@angular/core';
 import { StringStorageValue } from 'src/app/service/storage-value';
 import CryptoJS from "crypto-js";
+import { Base64 } from 'js-base64';
 
 console.log('CryptoJS', CryptoJS)
 @Component({
@@ -17,8 +18,8 @@ export class EncodingComponent {
       group: "Encode",
       name: "Base64",
       desc: "Base64 encoding and decoding",
-      encode: (text: string) => btoa(text),
-      decode: (text: string) => atob(text)
+      encode: (text: string) => Base64.encode(text), // 处理中文情况
+      decode: (text: string) => Base64.decode(text)
     },
     // URL with component
     {
