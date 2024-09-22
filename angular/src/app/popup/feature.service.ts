@@ -34,6 +34,12 @@ export class FeatureInfoService {
       desc: 'JSON解析和格式化',
       icon: ['fas', 'code']
     },
+    {
+      key: 'diff',
+      name: '差异对比',
+      desc: '文本差异对比',
+      icon: ['fas', 'code-compare']
+    },
     ]
   }
 }

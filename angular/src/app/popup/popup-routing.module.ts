@@ -8,6 +8,7 @@ import { RandomStringComponent } from './random-string/random-string.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EncodingComponent } from './encoding/encoding.component';
 import { JsonComponent } from './json/json.component';
+import { DiffComponent } from './diff/diff.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'json',
         component: JsonComponent
+      },
+      {
+        path: 'diff',
+        component: DiffComponent
       }
     ]
   },

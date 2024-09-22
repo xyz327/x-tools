@@ -3,4 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '@angular/cdk/overlay-prebuilt.css';
+//@import '@angular/cdk/overlay-prebuilt.css';
+@import 'ngx-diff/styles/default-theme';
+@import 'highlightjs/styles/xcode.css';
+@import 'text-different/build/style/text-different.css';
+
+

@@ -13,8 +13,11 @@ import { RandomStringComponent } from './random-string/random-string.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EncodingComponent } from './encoding/encoding.component';
 import { JsonComponent } from './json/json.component';
+import { DiffComponent } from './diff/diff.component';
+import { SideBySideDiffComponent } from 'ngx-diff';
 @NgModule({
-  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent, RandomStringComponent,SettingsComponent,EncodingComponent,JsonComponent],
-  imports: [CommonModule,FormsModule, PopupRoutingModule,FontAwesomeModule]
+  declarations: [PopupComponent, DateConvertComponent, IndexComponent, FeatureLayoutComponent,
+    RandomStringComponent, SettingsComponent, EncodingComponent, JsonComponent, DiffComponent],
+  imports: [CommonModule, FormsModule, PopupRoutingModule, FontAwesomeModule,SideBySideDiffComponent]
 })
-export class PopupModule {}
+export class PopupModule { }

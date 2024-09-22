@@ -1,6 +1,8 @@
+import { CopyService } from './../../service/copy.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { Component } from '@angular/core';
 import { StringStorageValue } from 'src/app/service/storage-value';
+import { CopyButton } from 'src/app/service/copy-btn';
 
 @Component({
   selector: 'app-json',
@@ -9,14 +11,17 @@ import { StringStorageValue } from 'src/app/service/storage-value';
 })
 export class JsonComponent {
 
+
   inputValue: StringStorageValue
   outputValue = ''
   rows = 10
-  constructor(private storageService: StorageService) {
+  copyBtn: CopyButton
+  constructor(private storageService: StorageService, private copyService: CopyService) {
     this.inputValue = new StringStorageValue(storageService, 'json.input', '')
     this.inputValue.subscribe(value => {
-     //this.onInputChange(value)
+      //this.onInputChange(value)
     })
+    this.copyBtn = new CopyButton(copyService, { icon: 'copy', text: '复制' }, { icon: 'check', text: '已复制' })
   }
 
   onInputChange(value: string) {
@@ -27,14 +32,13 @@ export class JsonComponent {
     try {
       this.outputValue = JSON.stringify(JSON.parse(value), null, 2)
     } catch (e) {
-
+      this.outputValue = e.message
     }
   }
-  format(){
-    try {
-      this.outputValue = JSON.stringify(JSON.parse(this.inputValue.value), null, 2)
-    } catch (e) {
-
-    }
+  format() {
+    this.onInputChange(this.inputValue.value)
+  }
+  copy() {
+    this.copyBtn.copy(this.outputValue)
   }
 }
