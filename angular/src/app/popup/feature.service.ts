@@ -21,6 +21,25 @@ export class FeatureInfoService {
       desc: '随机字符串',
       icon: ['fas', 'shuffle']
     },
+    {
+      key: 'encoding',
+      name: '字符串编码',
+      desc: '字符串编码',
+      icon: ['fas', 'text-height']
+    },
+
+    {
+      key: 'json',
+      name: 'JSON',
+      desc: 'JSON解析和格式化',
+      icon: ['fas', 'code']
+    },
+    {
+      key: 'diff',
+      name: '差异对比',
+      desc: '文本差异对比',
+      icon: ['fas', 'code-compare']
+    },
     ]
   }
 }

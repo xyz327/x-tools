@@ -1,0 +1,15 @@
+<div class="m-2">
+  <div class="grid grid-cols-2 gap-1">
+    <div class="">
+      <textarea class="textarea textarea-bordered textarea-lg w-full" placeholder="输入文本" [rows]="rows" [(ngModel)]="leftValue.value"></textarea>
+    </div>
+    <div class="">
+      <textarea class="textarea textarea-bordered textarea-lg w-full" placeholder="输入文本" [rows]="rows" [(ngModel)]="rightValue.value"></textarea>
+    </div>
+  </div>
+
+  <div id="diff-container">
+  </div>
+</div>
+
+<!-- <ngx-side-by-side-diff class="ngx-diff-light-theme" [before]="leftValue.value" [after]="rightValue.value" [lineContextSize]="4" /> -->

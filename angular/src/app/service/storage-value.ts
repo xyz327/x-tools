@@ -5,15 +5,23 @@ import dayjs from "dayjs";
 
 class ObservableValue<T> {
   value: T
+  defValue: T
   observers: Array<(value: T) => void> = []
   constructor(private key: string, defVal: T) {
     this.value = defVal
+    this.defValue = defVal
   }
   subscribe(observer: (value: T) => void): void {
     this.observers.push(observer)
   }
 }
 const cacheMap: Map<string, ObservableValue<any>> = new Map()
+export const StorageValueReset = () => {
+  cacheMap.forEach(v => {
+    v.value = v.defValue
+    v.observers.forEach(o => o(v.value))
+  })
+}
 function getObservableValue<T>(key: string, defVal: T): ObservableValue<T> {
   let v = cacheMap.get(key)
   if (!v) {
@@ -72,7 +80,7 @@ export class DateStorageValue extends StorageValue<Date> {
   constructor(override storageService: StorageService, key: string, format: string, defVal: Date) {
     super(storageService, key + ':' + format, defVal, (s) => {
       return dayjs(s, format).toDate()
-    }, (d)=>{
+    }, (d) => {
       return dayjs(d).format(format)
     })
   }

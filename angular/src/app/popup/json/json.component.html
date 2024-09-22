@@ -1,0 +1,21 @@
+<div>
+  <div class="join w-full">
+    <div class="join-item">
+      <textarea class="textarea textarea-bordered textarea-lg" [rows]="rows" [(ngModel)]="inputValue.value"></textarea>
+    </div>
+    <div class="join-item flex items-center">
+      <button class="btn btn-primary tooltip" data-tip="格式化" (click)="format()">
+格式化      </button>
+    </div>
+    <div class="join-item">
+      <div class="indicator">
+        <div class="indicator-item">
+          <button class="btn btn-sm" (click)="copy()">
+            <fa-icon [icon]="copyBtn.icon"></fa-icon>
+            {{copyBtn.text}}</button>
+        </div>
+        <textarea disabled class="textarea textarea-bordered textarea-lg" [rows]="rows" [value]="outputValue"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

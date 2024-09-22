@@ -20,6 +20,12 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
+            "allowedCommonJsDependencies":[
+              "lodash",
+              "dayjs",
+              "crypto-js",
+              "highlightjs"
+            ],
             "outputPath": "angular/dist",
             "index": "angular/src/index.html",
             "main": "angular/src/main.ts",
@@ -34,8 +40,7 @@
               "angular/src/side_panel.js"
             ],
             "styles": [
-              "angular/src/styles.scss",
-              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+              "angular/src/styles.scss"
             ],
             "scripts": []
           },

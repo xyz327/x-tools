@@ -2,4 +2,14 @@
 <!-- Routing based on the module that opened (popup/options/tab) -->
 <div [attr.data-theme]="theme">
   <router-outlet ></router-outlet>
+  <div role="alert" class="alert alert-error" *ngIf="errorMsg!=''">
+    <fa-icon icon="bug"></fa-icon>
+    <span>
+      {{errorMsg}}
+    </span>
+    <div>
+      <a class="btn btn-sm" routerLink="/popup/settings">去清除缓存</a>
+    </div>
+  </div>
 </div>
+

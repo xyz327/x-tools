@@ -1,0 +1,32 @@
+<div class="p-2">
+  <div class="form-control">
+    <textarea type="text" [rows]="rows" class="w-full pr-16 textarea textarea-primary text-3xl" [(ngModel)]="inputValue.value"></textarea>
+  </div>
+
+  <div class="grid grid-cols-12 m-2 mt-5">
+    <div class="col-span-10">
+      <div class="grid grid-cols-2">
+        <div class="join m-1">
+          <select class="join-item select select-bordered select-primary" [(ngModel)]="selectedCodec.value">
+            <optgroup *ngFor="let entry of groupedCodecMap|keyvalue" [label]="entry.key">
+              <option *ngFor="let item of entry.value;" [value]="item.name">{{item.name}}</option>
+            </optgroup>
+          </select>
+          <button class="join-item btn btn-outline btn-primary" (click)="encode()">编码</button>
+          <button class="join-item btn btn-outline btn-accent" (click)="decode()" [disabled]="decodeDisabled">解码</button>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="col-span-2 ">
+      <button class="float-right btn btn-primary rounded-lg shadow-lg " (click)="switchValue()">
+        <fa-icon icon="arrows-up-down"></fa-icon>交换</button>
+    </div>
+  </div>
+  <div class="form-control">
+    <textarea type="text" [rows]="rows" disabled class="w-full pr-16 textarea textarea-primary text-3xl"
+      [(ngModel)]="outputValue"></textarea>
+  </div>
+</div>
