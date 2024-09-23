@@ -3,6 +3,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { Component } from '@angular/core';
 import { StringStorageValue } from 'src/app/service/storage-value';
 import { CopyButton } from 'src/app/service/copy-btn';
+import JSON5 from 'json5'
 
 @Component({
   selector: 'app-json',
@@ -29,7 +30,7 @@ export class JsonComponent {
       return
     }
     try {
-      this.outputValue = JSON.stringify(JSON.parse(value), null, space)
+      this.outputValue = JSON.stringify(JSON5.parse(value), null, space)
     } catch (e) {
       this.outputValue = e.message
     }
@@ -42,7 +43,7 @@ export class JsonComponent {
   }
   zip() {
     try {
-      this.outputValue = JSON.stringify(JSON.parse(this.inputValue.value))
+      this.outputValue = JSON.stringify(JSON5.parse(this.inputValue.value))
     } catch (e) {
       this.outputValue = e.message
     }
