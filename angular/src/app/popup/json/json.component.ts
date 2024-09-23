@@ -11,7 +11,6 @@ import { CopyButton } from 'src/app/service/copy-btn';
 })
 export class JsonComponent {
 
-
   inputValue: StringStorageValue
   outputValue = ''
   rows = 10
@@ -24,21 +23,37 @@ export class JsonComponent {
     this.copyBtn = new CopyButton(copyService, { icon: 'copy', text: '复制' }, { icon: 'check', text: '已复制' })
   }
 
-  onInputChange(value: string) {
+  onInputChange(value: string, space: number) {
     if (value == '') {
       this.outputValue = ''
       return
     }
     try {
-      this.outputValue = JSON.stringify(JSON.parse(value), null, 2)
+      this.outputValue = JSON.stringify(JSON.parse(value), null, space)
     } catch (e) {
       this.outputValue = e.message
     }
   }
   format() {
-    this.onInputChange(this.inputValue.value)
+    this.onInputChange(this.inputValue.value, 2)
   }
   copy() {
     this.copyBtn.copy(this.outputValue)
+  }
+  zip() {
+    try {
+      this.outputValue = JSON.stringify(JSON.parse(this.inputValue.value))
+    } catch (e) {
+      this.outputValue = e.message
+    }
+  }
+  escape() {
+    // json转义
+    this.zip()
+    this.outputValue = this.outputValue.replaceAll(/\\/g, '\\\\').replaceAll(/\"/g, '\\"')
+  }
+  unescape() {
+    const val = this.inputValue.value.replaceAll(/\\"/g, '"').replaceAll(/\\\\/g, '\\')
+    this.onInputChange(val, 0)
   }
 }

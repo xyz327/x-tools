@@ -4,8 +4,12 @@
       <textarea class="textarea textarea-bordered textarea-lg" [rows]="rows" [(ngModel)]="inputValue.value"></textarea>
     </div>
     <div class="join-item flex items-center">
-      <button class="btn btn-primary tooltip" data-tip="格式化" (click)="format()">
-格式化      </button>
+      <div class="flex flex-col pb-1">
+        <button class="btn btn-primary tooltip mt-1" data-tip="格式化" (click)="format()">格式化</button>
+        <button class="btn btn-primary tooltip mt-1" data-tip="压缩 " (click)="zip()">压缩 </button>
+        <button class="btn btn-primary tooltip mt-1" data-tip="转义 " (click)="escape()">转义 </button>
+        <button class="btn btn-primary tooltip mt-1" data-tip="反转义" (click)="unescape()">反转义</button>
+      </div>
     </div>
     <div class="join-item">
       <div class="indicator">
@@ -14,7 +18,8 @@
             <fa-icon [icon]="copyBtn.icon"></fa-icon>
             {{copyBtn.text}}</button>
         </div>
-        <textarea disabled class="textarea textarea-bordered textarea-lg" [rows]="rows" [value]="outputValue"></textarea>
+        <textarea disabled class="textarea textarea-bordered textarea-lg" [rows]="rows"
+          [value]="outputValue"></textarea>
       </div>
     </div>
   </div>
