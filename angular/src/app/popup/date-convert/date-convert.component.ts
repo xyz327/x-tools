@@ -64,10 +64,14 @@ export class DateConvertComponent implements OnInit, OnDestroy {
       this.showDate()
     })
     this.timezone = new TimezoneValue(this.storageService)
+    dayjs.tz.setDefault(this.timezone.value)
+    console.log(dayjs.tz)
     this.timezone.subscribe((val) => {
       dayjs.tz.setDefault(val)
+      console.log('dayjs', dayjs)
       this.showDate()
     })
+
   }
   getTimezone(): string {
     return this.timezone.value
@@ -113,15 +117,17 @@ export class DateConvertComponent implements OnInit, OnDestroy {
       date = date.tz(this.timezone.value)
       this.outputVal = timestampType.toDate(date);
     } else {
-      date = dayjs(this.inputVal);
-      if (!date.isValid()) {
-        // 不是标准格式的时间字符串，尝试使用额外的 format 解析
+      try {
+        date = dayjs.tz(this.inputVal, this.getTimezone());
+      } catch (e) {
         date = this.parseDateWithExtFormte(this.inputVal)
       }
-      if (!date.isValid()) {
+      if (date == null || !date.isValid()) {
         this.outputVal = "时间格式不正确"
         return
       }
+      console.log(date)
+
       this.outputVal = timestampType.toTimestamp(date)
     }
     this.storageService.set(this.storageKey, this.inputVal)
@@ -131,7 +137,14 @@ export class DateConvertComponent implements OnInit, OnDestroy {
     }
   }
   parseDateWithExtFormte(inputVal: string): any {
-    return dayjs(inputVal, this.extDateFormats)
+    for (const format of this.extDateFormats) {
+      try {
+        return dayjs.tz(inputVal, format, this.getTimezone())
+      } catch (e) {
+        continue
+      }
+    }
+    return null
   }
   timezoneChange() {
 
